@@ -441,8 +441,8 @@ public class WarningScreen extends JFrame {
 		updateWork.execute();
 
 		// 上传预警信息到乐维服务器
-		SwingWorker uploadInfo = uploadWarningInfoToLewei();
-		uploadInfo.execute();
+		// SwingWorker uploadInfo = uploadWarningInfoToLewei();
+		// uploadInfo.execute();
 
 		// 短信邮件发送
 		// SwingWorker sendInfo = sendWarningInfo();
@@ -913,7 +913,7 @@ public class WarningScreen extends JFrame {
 			protected String doInBackground() throws Exception {
 				wld = new WarningLightDao();
 				while (true) {
-					if (taktCount > 0) {
+					if (rangerNum >= 0) {
 						// if (rangerNum == 0) {
 						// realCount = wld.getRealNum_zao();
 						// } else if (rangerNum == 1) {
@@ -1488,7 +1488,7 @@ public class WarningScreen extends JFrame {
 					// 当前工位存入当前产线
 					wld.insertWorkStation(TPLineID, string.split(";")[1]);
 					// 预警消息存入数据库
-					wld.addWarningInfo(remark);
+					wld.addWarningInfo(remark, 3);// 数字表示当前线别ID
 				} catch (SQLException e) {
 					System.out.println("插入预警信息出错！");
 					e.printStackTrace();
